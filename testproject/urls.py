@@ -15,8 +15,10 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from django.contrib import admin
+from shortener.views import create_link, view_link, process_link
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', create_link),
+    url(r'^!(.*)$', view_link),
+    url(r'^(.*)$', process_link),
 ]
