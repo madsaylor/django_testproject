@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
 from datetime import datetime
 import requests
-from pprint import pformat
 
 
 class Command(BaseCommand):
@@ -27,7 +26,7 @@ class Command(BaseCommand):
         # TODO: we can use bulk_update or DB transaction here
         user_precount = User.objects.count()
         for result in r.json()['results']:
-            u = User.objects.create_user(
+            User.objects.create_user(
                 result['login']['username'],
                 result['email'],
                 result['login']['password'],
